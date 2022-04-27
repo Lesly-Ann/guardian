@@ -97,7 +97,7 @@ class EnclaveMemoryLayout:
             # heap offset
             state.mem[global_data_addr
                       + 1 * 8].uint64_t = self.heap_start - self.base_addr
-            #heap size
+            # heap size
             state.mem[global_data_addr + 2 * 8].uint64_t = self.heap_size
             # thread policy
             #state.mem[global_data_addr + 7*8].uint64_t = 0
@@ -109,7 +109,7 @@ class EnclaveMemoryLayout:
             # heap offset
             state.mem[global_data_addr
                       + 2 * 8].uint64_t = self.heap_start - self.base_addr
-            #heap size
+            # heap size
             state.mem[global_data_addr + 3 * 8].uint64_t = self.heap_size
             # thread policy
             #state.mem[global_data_addr + 7*8].uint64_t = 0

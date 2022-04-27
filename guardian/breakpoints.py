@@ -69,6 +69,7 @@ class Breakpoints:
             action=lambda s: self.outside_memory_read_detection(s, layout))
         return proj, simgr
 
+    # Return a symbolic value when an instruction reads memory outside the enclave
     def outside_memory_read_detection(self, state, layout):
         addr = state.inspect.mem_read_address
         assert state.inspect.mem_read_length is not None
@@ -87,6 +88,9 @@ class Breakpoints:
         if state.enclave.call_stack is not None and state.enclave.call_stack:
             del state.enclave.call_stack[-1]
 
+    # (addr, length): assert (base_addr <= addr && addr <= (end_addr - length)
+    # what if length is very big and underflows?
+    # can it happen?
     def detect_read_violations(self, simgr, state, layout):
         read_allowed = (state.enclave.ooe_rights == Rights.ReadWrite) or (
             state.enclave.ooe_rights == Rights.Read)

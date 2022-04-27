@@ -293,6 +293,7 @@ class Report:
             except:
                 log.error("  Timeout!\n")
 
+    # Run guardian for a given ecall
     def explore_and_report(self, simgr, ecall_addr):
         simgr.explore()
         log.info("  Exploration finished!")
